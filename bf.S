@@ -10,6 +10,8 @@
 #define BF_LSHIFT	60
 #define BF_RSHIFT	62
 
+#define BF_READFILE
+
 	.global	_start
 	.text
 _start:
@@ -17,6 +19,18 @@ _start:
 
 	/* read 32768 bytes.  */
 	movb	$0x80, %dh
+#ifdef BF_READFILE
+	/* open.  */
+	movb	$2, %al
+	pop	%rdi
+	pop	%rdi
+	pop	%rdi
+	/* O_RDONLY is zero.  */
+	syscall
+	/* Error is okay, we will eventually just exit w.o executing.  */
+	movl	%eax, %edi
+	xorl	%eax, %eax
+#endif
 	leal	(G_mem + 65536)(%rip), %esi
 	/* eax/edi are already zero which happens to match
 	   SYS_read/STDIN_FILENO.  */

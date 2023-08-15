@@ -1,11 +1,25 @@
 ## Brainfuck in 93 Bytes of Code
+
+#### Stdin
 ```
 $> gcc -s -static -nostartfiles -nodefaultlibs -nostdlib -Wl,--build-id=none bf.S -o bf
-$> ./bf < hello-world.b
+$> ./bf < hello-world.b # Reads program from stdin
 ```
 
+#### From commandline argument (Unfortunately 104 bytes)
+```
+$> gcc -DBF_READFILE -s -static -nostartfiles -nodefaultlibs -nostdlib -Wl,--build-id=none bf.S -o bf
+$> ./bf hello-world.b # Reads program from argument
+$> ./bf primes.b # More complex. Better test.
+```
+
+
+
+
+
+
 #### Why?
-- For fun :)
+- I like golf
 - [According to Wikipedia](https://en.wikipedia.org/wiki/Brainfuck), Brainfuck was designed to be implementable with the smallest compiler possible. 240 bytes seemed like overkill.
 
 #### TODO
