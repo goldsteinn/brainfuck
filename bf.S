@@ -10,7 +10,7 @@
 #define BF_LSHIFT	60
 #define BF_RSHIFT	62
 
-#define BF_READFILE
+// #define BF_READFILE
 
 	.global	_start
 	.text
